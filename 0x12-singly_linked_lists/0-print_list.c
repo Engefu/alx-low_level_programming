@@ -1,5 +1,5 @@
-#include "lists.h"  // include the header file
 #include <stdio.h>
+#include "lists.h"  // include the header file
 
 /**
  * print_list - prints all the elements of a linked list
