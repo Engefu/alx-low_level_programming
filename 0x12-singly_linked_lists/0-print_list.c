@@ -18,8 +18,8 @@ size_t print_list(const list_t *h)
         else
             printf("[%d] %s\n", h->len, h->str);
 
-        count++; // increment the count variable
         h = h->next; // move to the next node
+        count++; // increment the count variable
     }
 
     return (count); // return the number of nodes
