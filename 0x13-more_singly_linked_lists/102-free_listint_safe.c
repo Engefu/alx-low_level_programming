@@ -9,30 +9,23 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *current, *temp;
-	size_t count = 0;
+	size_t size = 0;
+	listint_t *current, *next;
 
-	if (h == NULL || *h == NULL)
-		return (0);
+	if (h == NULL)
+		return (size);
 
 	current = *h;
 	while (current != NULL)
 	{
-		count++;
-		if (current <= current->next)
-		{
-			printf("Freeing node with unique address: %p\n", (void *)current);
-			temp = current;
-			current = current->next;
-			free(temp);
-		}
-		else
-		{
-			printf("Loop detected, exiting...\n");
-			*h = NULL;
-			exit(98);
-		}
+		next = current->next;
+		free(current);
+		size++;
+		if ((void *)current <= (void *)next)
+			break;
+		current = next;
 	}
+
 	*h = NULL;
-	return (count);
+	return (size);
 }
