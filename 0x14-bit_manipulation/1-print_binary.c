@@ -1,27 +1,27 @@
 #include "main.h"
 
 /**
- * print_binary - Prints the binary representation of a number.
- * @n: The number to print.
- *
- * Return: void
+ * print_binary - prints the binary representation of a number
+ * @n: the number to convert to binary and print
  */
 void print_binary(unsigned long int n)
 {
+	/* Find the most significant bit position */
 	unsigned long int mask = 1;
-	int bit;
+	int msb_pos = 0;
 
-	/* Shift mask to leftmost bit */
-	mask <<= (sizeof(unsigned long int) * 8) - 1;
+	while ((n >> msb_pos) > 0)
+		msb_pos++;
 
-	for (bit = 0; bit < (int)(sizeof(unsigned long int) * 8); bit++)
+	msb_pos--;
+
+	/* Print binary representation */
+	while (msb_pos >= 0)
 	{
-		if ((n & mask) == 0)
-			_putchar('0');
-		else
-			_putchar('1');
-
-		/* Shift mask one bit to the right */
-		mask >>= 1;
+	if ((n >> msb_pos) & mask)
+		_putchar('1');
+	else
+		_putchar('0');
+	msb_pos--;
 	}
 }
